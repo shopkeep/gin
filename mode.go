@@ -5,7 +5,7 @@
 package gin
 
 import (
-	"fmt"
+	"log"
 	"os"
 )
 
@@ -43,21 +43,11 @@ func SetMode(value string) {
 	case TestMode:
 		gin_mode = testCode
 	default:
-		panic("gin mode unknown: " + value)
+		log.Panic("gin mode unknown: " + value)
 	}
 	mode_name = value
 }
 
 func Mode() string {
 	return mode_name
-}
-
-func IsDebugging() bool {
-	return gin_mode == debugCode
-}
-
-func debugPrint(format string, values ...interface{}) {
-	if IsDebugging() {
-		fmt.Printf("[GIN-debug] "+format, values...)
-	}
 }
